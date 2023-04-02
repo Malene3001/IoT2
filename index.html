@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block body %}
+  <h3 class='text-center text-muted mb-3'>List of Products</h3>
+  <!-- Laver +Add Product knappen -->
+  <p class='text-right'><a href='{{url_for("add_user")}}' class='btn btn-success '>+Add Product</a></p>
+  <p class='text-right'><a href='{{url_for("statistics")}}' class='btn btn-success '>Statistics</a></p>
+  <table class='table table-bordered'>
+    <thead>
+      <!-- Alt inde i thead er hvad kategorierne for tabellen -->
+      <th>ID</th>
+      <th>Product</th>
+      <th>Udløbsdato</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </thead>
+    <tbody>
+      {% for row in datas %}
+        <tr>
+          <td>{{loop.index}}</td>
+          <td>{{row.Product}}</td>
+          <td>{{row.Udløbsdato}}</td>
+          <td><a href='{{url_for("edit_user",uid=row.UID)}}' class='btn btn-primary'>Edit</a></td>
+          <td><a href='{{url_for("delete_user",uid=row.UID)}}' class='btn btn-danger' onclick='return confirm("Are You Sure")'>Delete</a></td>
+        </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+{% endblock %}
